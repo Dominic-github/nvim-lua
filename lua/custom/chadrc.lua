@@ -1,6 +1,7 @@
 -- Just an example, supposed to be placed in /lua/custom/
 
 local M = {}
+
 local override = require "custom.override"
 
 -- make sure you maintain the structure of `core/default_config.lua` here,
@@ -26,12 +27,9 @@ M.plugins = {
    ["goolord/alpha-nvim"] = override.alpha,
    ["williamboman/mason.nvim"] = override.mason,
    },
-
-   status = {
-     dashboard = true,
-   },
  }
 
  M.mappings = require "custom.mappings"
+
 
 return M

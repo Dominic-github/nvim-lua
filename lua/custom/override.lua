@@ -2,6 +2,7 @@
 
 local M = {}
 
+
 M.treesitter = {
   ensure_installed = {
     "vim",
@@ -15,6 +16,9 @@ M.treesitter = {
     "bash",
     "lua",
     "norg",
+  },
+  autotag = {
+    enable = true,
   },
 }
 

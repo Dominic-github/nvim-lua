@@ -44,9 +44,18 @@ return {
     end,
   },
 
+  -- Prettier plugin for Neovim's built-in LSP client
   ['MunifTanjim/prettier.nvim'] = {
+    config = function ()
+      require "custom.plugins.prettier"
+    end,
+  },
+
+  -- get highlight group under cursor
+  ["nvim-treesitter/playground"] = {
+    cmd = "TSCaptureUnderCursor",
     config = function()
-      require "custom.plugins.null-ls"
+      require("nvim-treesitter.configs").setup()
     end,
   },
 

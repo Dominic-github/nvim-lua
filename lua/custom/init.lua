@@ -58,3 +58,5 @@ autocmd("VimLeavePre", {
     liveReload_xresources()
   end,
 })
+
+require("custom.options")

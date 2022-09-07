@@ -3,6 +3,10 @@
 
 return {
 
+  ['dsznajder/vscode-es7-javascript-react-snippets'] = {
+    run = 'yarn install --frozen-lockfile && yarn compile'
+  },
+
 
   ['lewis6991/gitsigns.nvim'] = {
       requires = { 'nvim-lua/plenary.nvim' },

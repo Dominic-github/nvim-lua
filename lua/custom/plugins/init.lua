@@ -5,6 +5,14 @@ return {
 
   ["kyazdani42/nvim-tree.lua"] = {
   after = "nvim-web-devicons",
+  requires = {
+    'kyazdani42/nvim-web-devicons', -- optional, for file icons
+  },
+  tag = 'nightly',
+  config = function()
+     require "custom.plugins.nvimtree"
+  end,
+
   },
 
   ["goolord/alpha-nvim"] = {

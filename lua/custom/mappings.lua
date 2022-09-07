@@ -75,8 +75,6 @@ M.nvimtree = {
     -- focus
     ["<leader>e"] = { "<cmd> NvimTreeFocus <CR>", "focus nvimtree" },
 
-    -- refresh
-    ["<C-r>"] = { "<cmd> NvimTreeRefresh<CR>", "refresh nvimtree" },
   },
 }
 
@@ -85,7 +83,7 @@ M.nvterm = {
   n = {
     ["<leader>lz"] = {
       function()
-        require("nvterm.terminal").send("lazygit", "vertical")
+        require("nvterm.terminal").send("lazygit", "float")
       end,
       "nvterm lazygit",
 

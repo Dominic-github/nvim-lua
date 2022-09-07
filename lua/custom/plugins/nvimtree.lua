@@ -16,12 +16,6 @@ local options = {
   hijack_cursor = true,
   hijack_unnamed_buffer_when_opening = false,
   update_cwd = true,
-  mappings = {
-     list = {
-       { key = "u", action = "dir_up" },
-       { key = "<C-u>", action = "cd" },
-     },
-  },
   update_focused_file = {
     enable = true,
     update_cwd = false,

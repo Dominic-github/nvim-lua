@@ -13,12 +13,6 @@ return {
   end,
   },
 
-  ['lewis6991/gitsigns.nvim'] = {
-      requires = { 'nvim-lua/plenary.nvim' },
-      config = "require('custom.plugins.gitsigns')",
-      event = "BufRead"
-  },
-
   ['kdheepak/lazygit.nvim'] = {},
 
 

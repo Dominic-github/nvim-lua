@@ -87,55 +87,6 @@ M.lazygit = {
 
 }
 
-M.Gitsigns = {
-  n = {
-
-    ["]c"] = {
-        function()
-      if vim.wo.diff then return ']c' end
-      vim.schedule(function() package.loaded.gitsigns.next_hunk() end)
-      return '<Ignore>'
-        end,
-      "next_hunk",
-      { expr = true },
-    },
-
-    ["[c"] = {
-        function()
-          if vim.wo.diff then return '[c' end
-      vim.schedule(function() package.loaded.gitsigns.prev_hunk() end)
-          return '<Ignore>'
-        end,
-      "prev_hunk",
-      { expr = true },
-    },
-
-    ["<leader>ghs"] = {"<cmd> Gitsigns stage_hunk <CR>", "stage_hunk"},
-
-    ["<leader>ghr"] = {"<cmd> Gitsigns reset_hunk <CR>", "reset_hunk"},
-
-    ["<leader>ghu"] = {"<cmd> Gitsigns undo_stage_hunk <CR>", "undo_stage_hunk"},
-
-    ["<leader>ghS"] = {"<cmd> Gitsigns stage_buffer<CR>", "stage_buffer"},
-
-    ["<leader>ghR"] = {"<cmd> Gitsigns reset_buffer <CR>", "reset_buffer"},
-
-    ["<leader>ghp"] = {"<cmd> Gitsigns preview_hunk <CR>", "preview_hunk"},
-
-    ["<leader>ght"] = {"<cmd> Gitsigns toggle_deleted <CR>", "toggle_deleted"},
-
-    ["<leader>ghd"] = {"<cmd> Gitsigns diffthis <CR>", "diffthis"},
-
-  },
-
-  v = {
-
-    ["<leader>ghs"] = {"<cmd> Gitsigns stage_hunk <CR>", "stage_hunk"},
-    ["<leader>ghr"] = {"<cmd> Gitsigns reset_hunk <CR>", "reset_hunk"},
-
-  }
-}
-
 
 
 

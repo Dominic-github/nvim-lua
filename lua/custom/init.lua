@@ -1,7 +1,3 @@
--- commands
-
--- I dont use shade.nvim/autosave.nvim all the time so made commands for them
--- So this makes easy to lazy load them at cmds
 
 local new_cmd = vim.api.nvim_create_user_command
 local api = vim.api

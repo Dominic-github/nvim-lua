@@ -16,9 +16,7 @@ M.ui = {
   transparency = false,
 }
 
-
 M.plugins = {
-   user = require "custom.plugins",
 
    override = {
    ["kyazdani42/nvim-tree.lua"] = override.nvimtree,
@@ -27,6 +25,9 @@ M.plugins = {
    ["goolord/alpha-nvim"] = override.alpha,
    ["williamboman/mason.nvim"] = override.mason,
    },
+
+   user = require "custom.plugins",
+
  }
 
  M.mappings = require "custom.mappings"

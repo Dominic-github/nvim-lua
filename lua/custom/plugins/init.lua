@@ -3,6 +3,10 @@
 
 return {
 
+  ["kyazdani42/nvim-tree.lua"] = {
+  after = "nvim-web-devicons",
+  },
+
   ["goolord/alpha-nvim"] = {
     disable = false,
   },

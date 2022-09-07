@@ -8,12 +8,19 @@ return {
   requires = {
     'kyazdani42/nvim-web-devicons', -- optional, for file icons
   },
-  tag = 'nightly',
   config = function()
      require "custom.plugins.nvimtree"
   end,
-
   },
+
+  ['lewis6991/gitsigns.nvim'] = {
+      requires = { 'nvim-lua/plenary.nvim' },
+      config = "require('custom.plugins.gitsigns')",
+      event = "BufRead"
+  },
+
+  ['kdheepak/lazygit.nvim'] = {},
+
 
   ["goolord/alpha-nvim"] = {
     disable = false,

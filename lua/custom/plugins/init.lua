@@ -3,15 +3,6 @@
 
 return {
 
-  ["kyazdani42/nvim-tree.lua"] = {
-  after = "nvim-web-devicons",
-  requires = {
-    'kyazdani42/nvim-web-devicons', -- optional, for file icons
-  },
-  config = function()
-     require "custom.plugins.nvimtree"
-  end,
-  },
 
   ['kdheepak/lazygit.nvim'] = {},
 

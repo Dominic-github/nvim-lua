@@ -4,6 +4,12 @@
 return {
 
 
+  ['lewis6991/gitsigns.nvim'] = {
+      requires = { 'nvim-lua/plenary.nvim' },
+      config = "require('custom.plugins.gitsigns')",
+      event = "BufRead"
+  },
+
   ['kdheepak/lazygit.nvim'] = {},
 
 
@@ -62,6 +68,8 @@ return {
       require("nvim-treesitter.configs").setup()
     end,
   },
+
+  ['wakatime/vim-wakatime'] = {},
 
 }
 

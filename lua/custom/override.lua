@@ -1,5 +1,9 @@
 -- overriding default plugin configs!
-
+--
+-- alpha
+local fn = vim.fn
+local marginTopPercent = 0.3
+local headerPadding = fn.max { 2, fn.floor(fn.winheight(0) * marginTopPercent) }
 local M = {}
 
 
@@ -26,9 +30,10 @@ M.nvimtree = {
   git = {
     enable = true,
   },
-
+  sync_root_with_cwd = true,
   renderer = {
     highlight_git = true,
+    group_empty = true,
     icons = {
       show = {
         git = true,
@@ -36,7 +41,6 @@ M.nvimtree = {
     },
   },
 }
-
 M.blankline = {
   filetype_exclude = {
     "help",
@@ -67,6 +71,8 @@ M.alpha = {
 
     },
   },
+  headerPaddingTop = { type = "padding", val = headerPadding/2 },
+
 }
 
 M.mason = {

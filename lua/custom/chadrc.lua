@@ -8,8 +8,10 @@ local override = require "custom.override"
 -- example of changing theme:
 
 M.ui = {
-  hl_add = {},
-  hl_override = {},
+
+  hl_add = require("custom.highlights").new_hlgroups,
+  hl_override = require("custom.highlights").overriden_hlgroups,
+
   changed_themes = {},
   theme_toggle = { "jellybeans", "one_light" },
   theme = "jellybeans", -- default theme

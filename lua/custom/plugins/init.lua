@@ -9,9 +9,9 @@ return {
 
 
   ['lewis6991/gitsigns.nvim'] = {
-      requires = { 'nvim-lua/plenary.nvim' },
-      config = "require('custom.plugins.gitsigns')",
-      event = "BufRead"
+    requires = { 'nvim-lua/plenary.nvim' },
+    config = "require('custom.plugins.gitsigns')",
+    event = "BufRead"
   },
 
   ['kdheepak/lazygit.nvim'] = {},
@@ -28,14 +28,14 @@ return {
     end,
   },
 
-   ["Pocco81/AutoSave.nvim"] = {
+  ["Pocco81/AutoSave.nvim"] = {
     module = "autosave",
     config = function()
       require("custom.plugins.smolconfigs").autosave()
     end,
   },
 
--- autoclose tags in html, jsx etc
+  -- autoclose tags in html, jsx etc
   ["windwp/nvim-ts-autotag"] = {
     ft = { "html", "javascriptreact" },
     after = "nvim-treesitter",
@@ -44,24 +44,17 @@ return {
     end,
   },
 
--- markdown preview
+  -- markdown preview
   ['iamcco/markdown-preview.nvim'] = {
     ft = 'markdown',
     run = 'cd app && yarn install'
   },
 
-   -- format & linting
+  -- format & linting
   ["jose-elias-alvarez/null-ls.nvim"] = {
     after = "nvim-lspconfig",
     config = function()
       require "custom.plugins.null-ls"
-    end,
-  },
-
-  -- Prettier plugin for Neovim's built-in LSP client
-  ['MunifTanjim/prettier.nvim'] = {
-    config = function ()
-      require "custom.plugins.prettier"
     end,
   },
 
@@ -76,4 +69,3 @@ return {
   ['wakatime/vim-wakatime'] = {},
 
 }
-

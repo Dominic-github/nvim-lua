@@ -1,4 +1,3 @@
-
 local new_cmd = vim.api.nvim_create_user_command
 local api = vim.api
 

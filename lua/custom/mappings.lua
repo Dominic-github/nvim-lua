@@ -7,31 +7,36 @@ M.general = {
     ["<C-b>"] = { "<ESC>^", "beginning of line" },
     ["<C-e>"] = { "<End>", "end of line" },
 
-    -- Select All 
+    ["<C-s>"] = { function()
+      vim.lsp.buf.formatting_sync()
+      vim.cmd [[w]]
+    end, " Save file " },
+
+    -- Select All
     ["<C-a>"] = { "ggVG", "select all" },
 
     -- move line down or up
     ["<A-j>"] = { "<cmd> m .+1<CR>==", "move line down" },
     ["<A-k>"] = { "<cmd> m .-2<CR>==", "move line up" },
 
-     -- Press * to search for the term under the cursor or a visual selection and
-     -- then press a key below to replace all instances of it in the current file.
+    -- Press * to search for the term under the cursor or a visual selection and
+    -- then press a key below to replace all instances of it in the current file.
     ["<leader>r"] = { ":%s///g<Left><Left>", { noremap = true, silent = true } },
     ["<leader>rc"] = { ":%s///gc<Left><Left><Left>", { noremap = true, silent = true } },
 
     -- Type a replacement term and press . to repeat the replace    ment again. Useful
     -- for replacing a few instances of the term (comparable to     multiple cursors).
-    ["<leader>sg"] = {":let @/='\\<'.expand('<cword>').'\\>'<CR>cgn", { noremap = true, silent = true }}
+    ["<leader>sg"] = { ":let @/='\\<'.expand('<cword>').'\\>'<CR>cgn", { noremap = true, silent = true } }
 
   },
   i = {
 
-     -- go to  beginning and end
+    -- go to  beginning and end
     ["<C-b>"] = { "<ESC>^i", "beginning of line" },
     ["<C-e>"] = { "<End>", "end of line" },
 
-    -- Select All 
-    ["<C-a>"] = { "<ESC>ggVG" , "select all"  },
+    -- Select All
+    ["<C-a>"] = { "<ESC>ggVG", "select all" },
 
     -- move line down or up
     ["<A-j>"] = { "<Esc><cmd> m .+1<CR>==gi", "move line down" },
@@ -41,28 +46,28 @@ M.general = {
 
   v = {
 
-     -- go to  beginning and end
+    -- go to  beginning and end
     ["<C-b>"] = { "<ESC>^", "beginning of line" },
     ["<C-e>"] = { "<End>", "end of line" },
 
-    -- Select All 
+    -- Select All
     ["<C-a>"] = { "ggG", "select all" },
 
 
     -- move line down or up
-    ["<A-j>"] = { ":m '>+1<CR>gv=gv", { noremap=true } },
-    ["<A-k>"] = { ":m '<-2<CR>gv=gv", { noremap=true } },
+    ["<A-j>"] = { ":m '>+1<CR>gv=gv", { noremap = true } },
+    ["<A-k>"] = { ":m '<-2<CR>gv=gv", { noremap = true } },
 
 
     -- cut
-    ["<C-x>"] = { '"+d', { noremap=true } },
+    ["<C-x>"] = { '"+d', { noremap = true } },
 
 
   },
 
   x = {
 
-    ["<leader>sg"] = {'"sy:let @/=@s<CR>cgn', { noremap = true, silent = true }}
+    ["<leader>sg"] = { '"sy:let @/=@s<CR>cgn', { noremap = true, silent = true } }
   }
 }
 M.nvimtree = {
@@ -81,7 +86,7 @@ M.nvimtree = {
 M.lazygit = {
 
   n = {
-    ["<leader>lz"] = {"<cmd> LazyGit <CR>", "toggle lazygit"},
+    ["<leader>gg"] = { "<cmd> LazyGit <CR>", "toggle lazygit" },
 
   },
 
@@ -91,47 +96,47 @@ M.gitsigns = {
   n = {
 
     ["]c"] = {
-        function()
-      if vim.wo.diff then return ']c' end
-      vim.schedule(function() package.loaded.gitsigns.next_hunk() end)
-      return '<Ignore>'
-        end,
+      function()
+        if vim.wo.diff then return ']c' end
+        vim.schedule(function() package.loaded.gitsigns.next_hunk() end)
+        return '<Ignore>'
+      end,
       "next_hunk",
       { expr = true },
     },
 
     ["[c"] = {
-        function()
-          if vim.wo.diff then return '[c' end
-      vim.schedule(function() package.loaded.gitsigns.prev_hunk() end)
-          return '<Ignore>'
-        end,
+      function()
+        if vim.wo.diff then return '[c' end
+        vim.schedule(function() package.loaded.gitsigns.prev_hunk() end)
+        return '<Ignore>'
+      end,
       "prev_hunk",
       { expr = true },
     },
 
-    ["<leader>ghs"] = {"<cmd> Gitsigns stage_hunk <CR>", "stage_hunk"},
+    ["<leader>ghs"] = { "<cmd> Gitsigns stage_hunk <CR>", "stage_hunk" },
 
-    ["<leader>ghr"] = {"<cmd> Gitsigns reset_hunk <CR>", "reset_hunk"},
+    ["<leader>ghr"] = { "<cmd> Gitsigns reset_hunk <CR>", "reset_hunk" },
 
-    ["<leader>ghu"] = {"<cmd> Gitsigns undo_stage_hunk <CR>", "undo_stage_hunk"},
+    ["<leader>ghu"] = { "<cmd> Gitsigns undo_stage_hunk <CR>", "undo_stage_hunk" },
 
-    ["<leader>ghS"] = {"<cmd> Gitsigns stage_buffer<CR>", "stage_buffer"},
+    ["<leader>ghS"] = { "<cmd> Gitsigns stage_buffer<CR>", "stage_buffer" },
 
-    ["<leader>ghR"] = {"<cmd> Gitsigns reset_buffer <CR>", "reset_buffer"},
+    ["<leader>ghR"] = { "<cmd> Gitsigns reset_buffer <CR>", "reset_buffer" },
 
-    ["<leader>ghp"] = {"<cmd> Gitsigns preview_hunk <CR>", "preview_hunk"},
+    ["<leader>ghp"] = { "<cmd> Gitsigns preview_hunk <CR>", "preview_hunk" },
 
-    ["<leader>ght"] = {"<cmd> Gitsigns toggle_deleted <CR>", "toggle_deleted"},
+    ["<leader>ght"] = { "<cmd> Gitsigns toggle_deleted <CR>", "toggle_deleted" },
 
-    ["<leader>ghd"] = {"<cmd> Gitsigns diffthis <CR>", "diffthis"},
+    ["<leader>ghd"] = { "<cmd> Gitsigns diffthis <CR>", "diffthis" },
 
   },
 
   v = {
 
-    ["<leader>ghs"] = {"<cmd> Gitsigns stage_hunk <CR>", "stage_hunk"},
-    ["<leader>ghr"] = {"<cmd> Gitsigns reset_hunk <CR>", "reset_hunk"},
+    ["<leader>ghs"] = { "<cmd> Gitsigns stage_hunk <CR>", "stage_hunk" },
+    ["<leader>ghr"] = { "<cmd> Gitsigns reset_hunk <CR>", "reset_hunk" },
 
   }
 }
@@ -139,6 +144,3 @@ M.gitsigns = {
 
 
 return M
-
-
-

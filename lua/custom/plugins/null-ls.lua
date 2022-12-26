@@ -19,9 +19,11 @@ local sources = {
   -- i'm using sumeko lua
   -- b.formatting.stylua,
 
+  -- golang
+  b.formatting.gofmt,
+
   -- Shell
-  -- b.formatting.shfmt,
-  b.diagnostics.shellcheck.with { diagnostics_format = "#{m} [#{c}]" },
+  b.formatting.shfmt,
 
   -- python
   b.formatting.black,
@@ -30,7 +32,10 @@ local sources = {
   b.formatting.clang_format,
 
   -- Check
-  b.diagnostics.markdownlint,
+  -- b.diagnostics.markdownlint,
+
+  -- formatting markdown
+  b.formatting.mdformat
 
 }
 

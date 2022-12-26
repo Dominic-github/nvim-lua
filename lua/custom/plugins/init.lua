@@ -7,6 +7,7 @@ return {
     run = 'yarn install --frozen-lockfile && yarn compile'
   },
 
+  ['tpope/vim-surround'] = {},
 
   ['lewis6991/gitsigns.nvim'] = {
     requires = { 'nvim-lua/plenary.nvim' },

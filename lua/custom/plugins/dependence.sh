@@ -1,4 +1,5 @@
 #!/bin/bash
+# Author: https://github.com/Dominic-github
 
 ARCHINSTALL="sudo pacman -S "
 GOINSTALL="go install "

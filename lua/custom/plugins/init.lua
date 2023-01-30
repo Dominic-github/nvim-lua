@@ -48,7 +48,7 @@ return {
   -- markdown preview
   ['iamcco/markdown-preview.nvim'] = {
     ft = 'markdown',
-    run = 'cd app && yarn install'
+    run = 'cd app && yarn install',
   },
 
   -- format & linting

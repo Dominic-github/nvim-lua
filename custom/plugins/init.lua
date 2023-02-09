@@ -47,8 +47,9 @@ return {
 
   -- markdown preview
   ['iamcco/markdown-preview.nvim'] = {
-    ft = 'markdown',
-    run = 'cd app && yarn install',
+    run = "cd app && npm install",
+    setup = function() vim.g.mkdp_filetypes = { "markdown" } end,
+    ft = { "markdown" },
   },
 
   -- format & linting

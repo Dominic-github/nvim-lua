@@ -17,6 +17,9 @@ $ARCHINSTALL npm
 # Yarn
 $ARCHINSTALL yarn
 
+# Lazygit
+$ARCHINSTALL lazygit
+
 # C, Cpp,
 $ARCHINSTALL clang
 
@@ -25,6 +28,9 @@ $ARCHINSTALL prettier
 
 # Sumeko lua
 $ARCHINSTALL lua-language-server
+
+# python pip
+$ARCHINSTALL python-pip
 
 # emmetls
 $NPMINSTALL emmet-ls

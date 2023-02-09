@@ -149,10 +149,18 @@ I'm (@siduck) really very sorry to remove the previous charity links but I had t
 ## Install my config
 
 ```
+# Remove current config
+rm -rf ~/.config/nvim
+rm -rf ~/.local/share/nvim
+rm -rf ~/.cache/nvim
+
 git clone https://github.com/NvChad/NvChad ~/.config/nvim --depth 1
+
 rm -rf ~/.config/nvim/custom
+
 git clone https://github.com/Dominic-github/nvim-lua  ~/.config/nvim/custom --depth 1 
 
+nvim
 ```
 
 

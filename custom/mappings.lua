@@ -7,10 +7,13 @@ M.general = {
     ["<C-b>"] = { "<ESC>^", "beginning of line" },
     ["<C-e>"] = { "<End>", "end of line" },
 
-    ["<C-s>"] = { function()
-      vim.lsp.buf.formatting_sync()
-      vim.cmd [[w]]
-    end, " Save file " },
+    ["<C-s>"] = {
+      function()
+        vim.lsp.buf.format { async = true }
+        vim.cmd [[w]]
+      end,
+      " Save file ",
+    },
 
     -- Select All
     ["<C-a>"] = { "ggVG", "select all" },
@@ -26,8 +29,7 @@ M.general = {
 
     -- Type a replacement term and press . to repeat the replace    ment again. Useful
     -- for replacing a few instances of the term (comparable to     multiple cursors).
-    ["<leader>sg"] = { ":let @/='\\<'.expand('<cword>').'\\>'<CR>cgn", { noremap = true, silent = true } }
-
+    ["<leader>sg"] = { ":let @/='\\<'.expand('<cword>').'\\>'<CR>cgn", { noremap = true, silent = true } },
   },
   i = {
 
@@ -41,7 +43,6 @@ M.general = {
     -- move line down or up
     ["<A-j>"] = { "<Esc><cmd> m .+1<CR>==gi", "move line down" },
     ["<A-k>"] = { "<Esc><cmd> m .-2<CR>==gi", "move line up" },
-
   },
 
   v = {
@@ -53,22 +54,18 @@ M.general = {
     -- Select All
     ["<C-a>"] = { "ggG", "select all" },
 
-
     -- move line down or up
     ["<A-j>"] = { ":m '>+1<CR>gv=gv", { noremap = true } },
     ["<A-k>"] = { ":m '<-2<CR>gv=gv", { noremap = true } },
 
-
     -- cut
     ["<C-x>"] = { '"+d', { noremap = true } },
-
-
   },
 
   x = {
 
-    ["<leader>sg"] = { '"sy:let @/=@s<CR>cgn', { noremap = true, silent = true } }
-  }
+    ["<leader>sg"] = { '"sy:let @/=@s<CR>cgn', { noremap = true, silent = true } },
+  },
 }
 M.nvimtree = {
   plugin = true,
@@ -79,7 +76,6 @@ M.nvimtree = {
 
     -- focus
     ["<leader>e"] = { "<cmd> NvimTreeFocus <CR>", "focus nvimtree" },
-
   },
 }
 
@@ -87,9 +83,7 @@ M.lazygit = {
 
   n = {
     ["<leader>gg"] = { "<cmd> LazyGit <CR>", "toggle lazygit" },
-
   },
-
 }
 
 M.gitsigns = {
@@ -97,9 +91,13 @@ M.gitsigns = {
 
     ["]c"] = {
       function()
-        if vim.wo.diff then return ']c' end
-        vim.schedule(function() package.loaded.gitsigns.next_hunk() end)
-        return '<Ignore>'
+        if vim.wo.diff then
+          return "]c"
+        end
+        vim.schedule(function()
+          package.loaded.gitsigns.next_hunk()
+        end)
+        return "<Ignore>"
       end,
       "next_hunk",
       { expr = true },
@@ -107,9 +105,13 @@ M.gitsigns = {
 
     ["[c"] = {
       function()
-        if vim.wo.diff then return '[c' end
-        vim.schedule(function() package.loaded.gitsigns.prev_hunk() end)
-        return '<Ignore>'
+        if vim.wo.diff then
+          return "[c"
+        end
+        vim.schedule(function()
+          package.loaded.gitsigns.prev_hunk()
+        end)
+        return "<Ignore>"
       end,
       "prev_hunk",
       { expr = true },
@@ -130,17 +132,13 @@ M.gitsigns = {
     ["<leader>ght"] = { "<cmd> Gitsigns toggle_deleted <CR>", "toggle_deleted" },
 
     ["<leader>ghd"] = { "<cmd> Gitsigns diffthis <CR>", "diffthis" },
-
   },
 
   v = {
 
     ["<leader>ghs"] = { "<cmd> Gitsigns stage_hunk <CR>", "stage_hunk" },
     ["<leader>ghr"] = { "<cmd> Gitsigns reset_hunk <CR>", "reset_hunk" },
-
-  }
+  },
 }
-
-
 
 return M

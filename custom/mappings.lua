@@ -4,8 +4,8 @@ M.general = {
   n = {
 
     -- go to  beginning and end
-    ["<C-b>"] = { "<ESC>^", "beginning of line" },
-    ["<C-e>"] = { "<End>", "end of line" },
+    ["<S-h>"] = { "<ESC>^", "beginning of line" },
+    ["<S-l>"] = { "<End>", "end of line" },
 
     ["<C-s>"] = {
       function()

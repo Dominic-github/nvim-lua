@@ -25,6 +25,7 @@ $ARCHINSTALL clang
 # Prettier
 $ARCHINSTALL prettier
 
+
 # Sumeko lua
 $ARCHINSTALL lua-language-server
 

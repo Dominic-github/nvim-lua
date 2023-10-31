@@ -2,7 +2,6 @@ local M = {}
 
 M.general = {
   n = {
-
     -- go to  beginning and end
     ["<S-h>"] = { "<ESC>^", "beginning of line" },
     ["<S-l>"] = { "<End>", "end of line" },
@@ -11,6 +10,7 @@ M.general = {
       function()
         vim.lsp.buf.format { async = true }
         vim.cmd [[w]]
+        vim.api.nvim_input "<ESC>"
       end,
       " Save file ",
     },
@@ -27,9 +27,12 @@ M.general = {
     ["<leader>r"] = { ":%s///g<Left><Left>", { noremap = true, silent = true } },
     ["<leader>rc"] = { ":%s///gc<Left><Left><Left>", { noremap = true, silent = true } },
 
-    -- Type a replacement term and press . to repeat the replace    ment again. Useful
-    -- for replacing a few instances of the term (comparable to     multiple cursors).
+    -- Type a replacement term and press . to repeat the replace  ment again. Useful
+    -- for replacing a few instances of the term (comparable to  multiple cursors).
     ["<leader>sg"] = { ":let @/='\\<'.expand('<cword>').'\\>'<CR>cgn", { noremap = true, silent = true } },
+
+    -- cut
+    ["<C-x>"] = { "dd", "cut line", { noremap = true } },
   },
   i = {
 
@@ -40,6 +43,14 @@ M.general = {
     -- Select All
     ["<C-a>"] = { "<ESC>ggVG", "select all" },
 
+    ["<C-s>"] = {
+      function()
+        vim.lsp.buf.format { async = true }
+        vim.cmd [[w]]
+      end,
+      " Save file ",
+    },
+
     -- move line down or up
     ["<A-j>"] = { "<Esc><cmd> m .+1<CR>==gi", "move line down" },
     ["<A-k>"] = { "<Esc><cmd> m .-2<CR>==gi", "move line up" },
@@ -48,8 +59,8 @@ M.general = {
   v = {
 
     -- go to  beginning and end
-    ["<C-b>"] = { "<ESC>^", "beginning of line" },
-    ["<C-e>"] = { "<End>", "end of line" },
+    ["<S-h>"] = { "^", "beginning of line" },
+    ["<S-l>"] = { "$", "end of line" },
 
     -- Select All
     ["<C-a>"] = { "ggG", "select all" },
@@ -57,6 +68,14 @@ M.general = {
     -- move line down or up
     ["<A-j>"] = { ":m '>+1<CR>gv=gv", { noremap = true } },
     ["<A-k>"] = { ":m '<-2<CR>gv=gv", { noremap = true } },
+
+    ["<C-s>"] = {
+      function()
+        vim.lsp.buf.format { async = true }
+        vim.cmd [[w]]
+      end,
+      " Save file ",
+    },
 
     -- cut
     ["<C-x>"] = { '"+d', { noremap = true } },

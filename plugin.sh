@@ -2,10 +2,13 @@
 # Author: https://github.com/Dominic-github
 #
 
-ARCHINSTALL="sudo pacman -S "
+ARCHINSTALL="sudo pacman -S --noconfirm "
+YAYINSTALL="yay -S --noconfirm "
 GOINSTALL="go install "
 NPMINSTALL="sudo npm install -g"
 
+# Fnm - manager node version
+$YAYINSTALL fnm
 
 # Lazygit
 $ARCHINSTALL go
@@ -19,12 +22,14 @@ $GOINSTALL mvdan.cc/sh/v3/cmd/shfmt@latest
 # Lazygit
 $ARCHINSTALL lazygit
 
+# Copy paste 
+$ARCHINSTALL xclip
+
 # C, Cpp,
 $ARCHINSTALL clang
 
 # Prettier
 $ARCHINSTALL prettier
-
 
 # Sumeko lua
 $ARCHINSTALL lua-language-server
@@ -55,6 +60,9 @@ $NPMINSTALL @fsouza/prettierd
 
 # csharp-ls
 # dotnet tool install --global csharp-ls
+
+# if pip error
+# sudo rm -rf /usr/lib/python3.11/EXTERNALLY-MANAGED
 
 # null-ls black format bash file
 pip install git+https://github.com/psf/black

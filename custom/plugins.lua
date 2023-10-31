@@ -39,6 +39,21 @@ local plugins = {
   },
 
   -- Install a plugin
+  -- alpha-nvim
+  {
+    "goolord/alpha-nvim",
+    lazy = false,
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+    config = function()
+      require("alpha").setup(require("alpha.themes.dashboard").config)
+      local dashboard = require "alpha.themes.dashboard"
+      dashboard.section.header.val = overrides.dashboard.section.header.val
+      dashboard.section.header.opts.hl = overrides.dashboard.section.header.opts.hl
+      dashboard.section.footer.opts.hl = overrides.dashboard.section.footer.opts.hl
+      require("alpha").setup(require("alpha.themes.dashboard").opts)
+    end,
+  },
+
   {
     "max397574/better-escape.nvim",
     event = "InsertEnter",
@@ -73,11 +88,12 @@ local plugins = {
   -- markdown preview
   {
     "iamcco/markdown-preview.nvim",
-    run = function()
+    cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
+    ft = { "markdown" },
+    build = function()
       vim.fn["mkdp#util#install"]()
     end,
   },
-
   {
     "wakatime/vim-wakatime",
     lazy = false,

@@ -34,6 +34,9 @@ $ARCHINSTALL prettier
 # Sumeko lua
 $ARCHINSTALL lua-language-server
 
+# Stylua
+$ARCHINSTALL stylua
+
 # python pip
 $ARCHINSTALL python-pip
 
@@ -61,7 +64,6 @@ $NPMINSTALL @fsouza/prettierd
 # csharp-ls
 # dotnet tool install --global csharp-ls
 
-# if pip error
 # sudo rm -rf /usr/lib/python3.11/EXTERNALLY-MANAGED
 
 # null-ls black format bash file

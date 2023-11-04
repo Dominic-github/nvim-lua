@@ -2,7 +2,7 @@ local M = {}
 
 M.general = {
   n = {
-    -- go to  beginning and end
+    -- go to  beginning and end 
     ["<S-h>"] = { "<ESC>^", "beginning of line" },
     ["<S-l>"] = { "<End>", "end of line" },
 
@@ -14,6 +14,9 @@ M.general = {
       end,
       " Save file ",
     },
+
+    ["<S-j>"] = { "5j", "move down 5 live" },
+    ["<S-k>"] = { "5k", "move down 5 live" },
 
     -- Select All
     ["<C-a>"] = { "ggVG", "select all" },
@@ -61,6 +64,9 @@ M.general = {
     -- go to  beginning and end
     ["<S-h>"] = { "^", "beginning of line" },
     ["<S-l>"] = { "$", "end of line" },
+
+    ["<S-j>"] = { "5j", "move down 5 live" },
+    ["<S-k>"] = { "5k", "move down 5 live" },
 
     -- Select All
     ["<C-a>"] = { "ggG", "select all" },

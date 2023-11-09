@@ -23,13 +23,18 @@
 
 </div>
 
-## Showcase
+## Install
 
-<img src="https://nvchad.com/features/nvdash.webp">
-<img src="https://nvchad.com/banner.webp">
+```bash
+    curl -s https://raw.githubusercontent.com/Dominic-github/nvim-lua/main/bin/install.sh | bash
+```
 
-<img src="https://nvchad.com/screenshots/onedark.webp">
-<img src="https://nvchad.com/screenshots/rxyhn1.webp">
+## Showcase my config
+
+<img src="../.github/assets/dashboard.png"></img>
+<img src="../.github/assets/main.png"></img>
+<img src="../.github/assets/findfile.png"></img>
+<img src="../.github/assets/lazygit.png"></img>
 
 ## What is it?
 

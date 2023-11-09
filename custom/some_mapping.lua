@@ -1,0 +1,6 @@
+-- indent key
+-- <"S->"><"S->">   | Add indent = 1 tab
+-- <"S-<"><"S-<">   | remove indent = 1 tab
+-- csw"             | Add "" on string
+-- cs"'             | change "" to ''
+-- ds"              | Remove "" on string     'asdasdad'

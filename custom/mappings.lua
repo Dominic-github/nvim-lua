@@ -3,8 +3,10 @@ local M = {}
 M.general = {
   n = {
     -- go to  beginning and end 
-    ["<S-h>"] = { "<ESC>^", "beginning of line" },
-    ["<S-l>"] = { "<End>", "end of line" },
+    ["<S-H>"] = { "<ESC>^", "beginning of line" },
+    ["<S-L>"] = { "<End>", "end of line" },
+    ["<S-J>"] = { "5j", "move down 5 live" },
+    ["<S-K>"] = { "5k", "move down 5 live" },
 
     ["<C-s>"] = {
       function()
@@ -15,8 +17,6 @@ M.general = {
       " Save file ",
     },
 
-    ["<S-j>"] = { "5j", "move down 5 live" },
-    ["<S-k>"] = { "5k", "move down 5 live" },
 
     -- Select All
     ["<C-a>"] = { "ggVG", "select all" },
@@ -62,11 +62,10 @@ M.general = {
   v = {
 
     -- go to  beginning and end
-    ["<S-h>"] = { "^", "beginning of line" },
-    ["<S-l>"] = { "$", "end of line" },
-
-    ["<S-j>"] = { "5j", "move down 5 live" },
-    ["<S-k>"] = { "5k", "move down 5 live" },
+    ["<S-H>"] = { "^", "beginning of line" },
+    ["<S-L>"] = { "<End>", "end of line" },
+    ["<S-J>"] = { "5j", "move down 5 live" },
+    ["<S-K>"] = { "5k", "move down 5 live" },
 
     -- Select All
     ["<C-a>"] = { "ggG", "select all" },
@@ -113,7 +112,6 @@ M.lazygit = {
 
 M.gitsigns = {
   n = {
-
     ["]c"] = {
       function()
         if vim.wo.diff then

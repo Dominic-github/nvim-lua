@@ -3,7 +3,14 @@ if not present then
   return
 end
 
+local mapping =  require "custom.mappings"
+
 require("base46").load_highlight "git"
+
+vim.api.nvim_set_hl(0, "DiffAdd", { fg = "#615cff", bg = "none" })
+vim.api.nvim_set_hl(0, "DiffChange", { fg = "#fcf153", bg = "none" })
+vim.api.nvim_set_hl(0, "DiffDelete", { fg = "#ff5967", bg = "none" })
+vim.api.nvim_set_hl(0, "DiffChangeDelete", { fg = "#61edff", bg = "none" })
 
 signs.setup {
   signs = {
@@ -14,7 +21,7 @@ signs.setup {
     changedelete = { hl = "DiffChangeDelete", text = "~", numhl = "GitSignsChangeNr" },
   },
   signcolumn = true, -- Toggle with `:Gitsigns toggle_signs`
-  numhl = false, -- Toggle with `:Gitsigns toggle_numhl`
+  numhl = true, -- Toggle with `:Gitsigns toggle_numhl`
   linehl = false, -- Toggle with `:Gitsigns toggle_linehl`
   word_diff = false, -- Toggle with `:Gitsigns toggle_word_diff`
   watch_gitdir = {

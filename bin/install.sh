@@ -95,16 +95,15 @@ function main(){
   
 	print_LICENSE
 
-  detect_platform
+	detect_platform
 
-  check_neovim_min_version
+	check_neovim_min_version
 
+	ConfigContainer
 
-  ConfigContainer
+	plugin
 
-  plugin
-
-  print_enjoy
+	print_enjoy
 
   #Done!!!!!
   # remove git clone 
@@ -304,8 +303,9 @@ function install(){
 	fi
 
   # Install Nvchad
+	rm -rf $HOME/.config/nvim
 	echo -e ${BBlue}"\n[*] Installing Nvchad...\n" ${Color_Off}
-  git clone https://github.com/NvChad/NvChad ~/.config/nvim --depth 1 
+	git clone https://github.com/NvChad/NvChad $HOME/.config/nvim --depth 1 
 	echo -e ${BGreen}"[*] Nvchad is successfully.\n" ${Color_Off}
 
 }
@@ -314,13 +314,12 @@ function install(){
 
 
 function moveConfig(){
-  
-	echo -e ${BBlue}"\n[*] Move custom file...\n" ${Color_Off}
+echo -e ${BBlue}"\n[*] Move custom file...\n" ${Color_Off}
   # remove custom 
   rm -rf ~/.config/nvim/lua/custom/
   # copy custom
   cp -a ~/.dominic-nvim/custom ~/.config/nvim/lua/
-	echo -e ${BGreen}"[*] Move custom is successfully.\n" ${Color_Off}
+echo -e ${BGreen}"[*] Move custom is successfully.\n" ${Color_Off}
 
 }
 
@@ -329,7 +328,6 @@ function plugin (){
 
   # Lazygit
 echo -e ${BBlue}"\n[*] Installing Lazygit ...\n" ${Color_Off}
-  git clone https://github.com/NvChad/NvChad ~/.config/nvim --depth 1 
   $RECOMMEND_INSTALL lazygit
 echo -e ${BGreen}"[*] Lazygit is successfully.\n" ${Color_Off}
 

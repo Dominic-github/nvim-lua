@@ -152,7 +152,7 @@ function install(){
 	echo -e ${BBlue}"\n[*] Installing neovim-config...\n" ${Color_Off}
 	SETTIMEOUT "" 1s
 
-	if ! [ -d $HOME/.dominic-nvim];then
+	if ! [ -d $HOME/.dominic-nvim ];then
 		git clone $DOTFILE_REMOTE $HOME/.dominic-nvim --depth 1
 
 		if [ -d $HOME/.dominic-nvim ];then

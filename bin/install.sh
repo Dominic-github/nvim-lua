@@ -104,6 +104,8 @@ function main(){
 
   plugin
 
+  print_enjoy
+
   #Done!!!!!
   # remove git clone 
   rm -rf ~/.dominic-nvim

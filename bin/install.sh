@@ -83,19 +83,30 @@ declare ARCHINSTALL="sudo pacman -S --noconfirm "
 declare YAYINSTALL="yay -S --noconfirm "
 declare GOINSTALL="go install "
 declare NPMINSTALL="sudo npm install -g"
+declare ARGS_INSTALL_DEPENDENCIES=1
+declare INTERACTIVE_MODE=1
+
 
 # =============================================================
 
 function main(){
 
 	print_logo
-
+  
 	print_LICENSE
 
-	checkGit
+  detect_platform
 
-  install
+  check_neovim_min_version
 
+
+  ConfigContainer
+
+  plugin
+
+  #Done!!!!!
+  # remove git clone 
+  rm -rf ~/.dominic-nvim
 
 }
 
@@ -147,7 +158,126 @@ function checkGit(){
 
 }
 
+
+function detect_platform() {
+  OS="$(uname -s)"
+  case "$OS" in
+    Linux)
+      if [ -f "/etc/arch-release" ] || [ -f "/etc/artix-release" ]; then
+        RECOMMEND_INSTALL="sudo pacman -S --noconfirm "
+      elif [ -f "/etc/fedora-release" ] || [ -f "/etc/redhat-release" ]; then
+        RECOMMEND_INSTALL="sudo dnf install -y"
+      elif [ -f "/etc/gentoo-release" ]; then
+        RECOMMEND_INSTALL="emerge -tv"
+      else # assume debian based
+        RECOMMEND_INSTALL="sudo apt install -y"
+      fi
+      ;;
+    FreeBSD)
+      RECOMMEND_INSTALL="sudo pkg install -y"
+      ;;
+    NetBSD)
+      RECOMMEND_INSTALL="sudo pkgin install"
+      ;;
+    OpenBSD)
+      RECOMMEND_INSTALL="doas pkg_add"
+      ;;
+    Darwin)
+      RECOMMEND_INSTALL="brew install"
+      ;;
+    *)
+	      echo -e ${BRed}"[!] Failed to install. OS $OS is not currently supported.\n" ${Color_Off}
+      exit 1
+      ;;
+  esac
+}
+
+
+
+
+function check_neovim_min_version() {
+  local verify_version_cmd='if !has("nvim-0.9") | cquit | else | quit | endif'
+  
+  if ! command -v nvim &>/dev/null; then
+	  echo -e ${BYellow}"[!] Please install it first and re-run the installer. Try: $RECOMMEND_INSTALL neovim" ${Color_Off}
+	exit 1
+
+  	# exit with an error if min_version not found
+  	if ! nvim --headless -u NONE -c "$verify_version_cmd"; then
+    	echo -e  ${BYellow}"[!]: My Config requires at least Neovim v0.9 or higher" ${Color_Off}
+   	 	exit 1
+  	fi
+
+  fi
+
+}
+
+
+function ConfigContainer(){
+	if [ "$ARGS_INSTALL_DEPENDENCIES" -eq 1 ]; then
+    	if [ "$INTERACTIVE_MODE" -eq 1 ]; then
+      		if confirm "Would you like to REMOVE current nvim config file"; then
+            removeCurentNeovim
+            install
+          else
+            echo -e  ${BBlue}"[*] We will to change name nvim = nvim(old-config) on $HOME/.config" ${Color_Off}
+            moveNameFile
+            removeCache
+            install
+      		fi
+      fi
+  fi
+}
+
+function moveNameFile(){
+
+	if [ -d $HOME/config/nvim ] ;then
+		echo -e ${BBlue}"[*] Move nvim => nvim(old-config)...\n" ${Color_Off}
+
+	 	mv $HOME/.config/nvim $HOME/.config/"nvim(old-config)"
+
+		if [ -d $HOME/.config/"nvim(old-config)" ];then
+			SETTIMEOUT "" 1s
+			echo -e ${BGreen}"[*] Moving is successfully.\n" ${Color_Off}
+ 		else
+			SETTIMEOUT "" 1s
+			echo -e ${BRed}"[!] Failed to Moving. $HOME/.config/nvim(old-config) is exist \n" ${Color_Off}
+			exit 1
+		fi
+	fi
+}
+
+
+function removeCurentNeovim(){
+	if  [ -d  $HOME/.config/nvim ] ;then
+		echo -e ${BBlue}"[*] Removing old nvim config files.\n" ${Color_Off}
+
+		rm -rf $HOME/.config/nvim
+		removeCache
+
+		if ! [ -d $HOME/.config/nvim ];then
+			SETTIMEOUT "" 1s
+			echo -e ${BGreen}"[*] Removing is successfully.\n" ${Color_Off}
+		else
+			SETTIMEOUT "" 1s
+			echo -e ${BRed}"[!] Failed to Removing.\n" ${Color_Off}
+			exit 1
+		fi
+	fi
+}
+
+
+function removeCache(){
+		echo -e ${BBlue}"[*] Removing cache nvim files.\n" ${Color_Off}
+		rm -rf $HOME/.local/share/nvim
+		rm -rf $HOME/.cache/nvim
+		echo -e ${BGreen}"[*] Removing Cache is successfully.\n" ${Color_Off}
+}
+
+
 function install(){
+
+  checkGit
 
 	echo -e ${BBlue}"\n[*] Installing neovim-config...\n" ${Color_Off}
 	SETTIMEOUT "" 1s
@@ -170,24 +300,27 @@ function install(){
 
 	fi
 
-  # Linux / Macos (unix)
-  # Remove cache
-  rm -rf ~/.config/nvim
-  rm -rf ~/.local/share/nvim
-
   # Install Nvchad
+	echo -e ${BBlue}"\n[*] Installing Nvchad...\n" ${Color_Off}
   git clone https://github.com/NvChad/NvChad ~/.config/nvim --depth 1 
+	echo -e ${BGreen}"[*] Nvchad is successfully.\n" ${Color_Off}
+
+}
+
+
+
+
+function moveConfig(){
   
+	echo -e ${BBlue}"\n[*] Move custom file...\n" ${Color_Off}
   # remove custom 
   rm -rf ~/.config/nvim/lua/custom/
-  
   # copy custom
   cp -a ~/.dominic-nvim/custom ~/.config/nvim/lua/
-  
-  # remove git clone 
-  rm -rf ~/.dominic-nvim
-  
+	echo -e ${BGreen}"[*] Move custom is successfully.\n" ${Color_Off}
+
 }
+
 
 function plugin (){
   # Lazygit
@@ -202,6 +335,30 @@ function plugin (){
   fi
 }
 
+
+function confirm() {
+
+  local question="$1"
+  while true; do
+    msg "$question"
+	SETTIMEOUT "Please read carefully before answering. You have 5 seconds"
+    read -p "[y]es or [N]o (default: no) : " -r answer
+    case "$answer" in
+      y | Y | yes | YES | Yes)
+        return 0
+        ;;
+      n | N | no | NO | No | *[[:blank:]]* | "")
+        return 1
+        ;;
+      *)
+         echo -e ${BYellow}"Please answer [y]es or [n]o.\n" ${Color_Off}
+
+        ;;
+    esac
+  done
+
+  echo $answer
+}
 
 
 
@@ -257,6 +414,31 @@ SOFTWARE.
 
 }
 
+function print_enjoy(){
+
+	echo -e ${Green}"
+	$(cat <<'EOF'
+	
+  _____ _   _     _  _____   __
+ | ____| \ | |   | |/ _ \ \ / /
+ |  _| |  \| |_  | | | | \ V / 
+ | |___| |\  | |_| | |_| || |  
+ |_____|_| \_|\___/ \___/ |_|  
+
+                               
+# author: Dominic-github
+# github: https://github.com/Dominic-github
+
+
+You need to run nvim to install plugin !!!
+
+EOF
+
+)" ${Color_Off}
+
+
+
+}
 # Run main function
 
 main "$@"

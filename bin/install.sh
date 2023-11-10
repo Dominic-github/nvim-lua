@@ -237,6 +237,7 @@ function moveNameFile(){
 		echo -e ${BBlue}"[*] Move nvim => nvim(old-config)...\n" ${Color_Off}
 
 	 	mv $HOME/.config/nvim $HOME/.config/"nvim(old-config)"
+		rm -rf $HOME/.config/nvim
 
 		if [ -d $HOME/.config/"nvim(old-config)" ];then
 			SETTIMEOUT "" 1s
@@ -325,12 +326,18 @@ function moveConfig(){
 
 
 function plugin (){
+
   # Lazygit
-  $ARCHINSTALL lazygit
+echo -e ${BBlue}"\n[*] Installing Lazygit ...\n" ${Color_Off}
+  git clone https://github.com/NvChad/NvChad ~/.config/nvim --depth 1 
+  $RECOMMEND_INSTALL lazygit
+echo -e ${BGreen}"[*] Lazygit is successfully.\n" ${Color_Off}
 
   # Copy paste 
-  $ARCHINSTALL xclip
-  
+echo -e ${BBlue}"\n[*] Installing Xclip ...\n" ${Color_Off}
+  $RECOMMEND_INSTALL xclip
+echo -e ${BGreen}"[*] Xclipis successfully.\n" ${Color_Off}
+
   # fix Error Pip
   if [ -f /usr/lib/python3.11/EXTERNALLY-MANAGED ]; then
     sudo rm -rf /usr/lib/python3.11/EXTERNALLY-MANAGED

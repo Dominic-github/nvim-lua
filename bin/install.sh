@@ -153,7 +153,7 @@ function install(){
 	SETTIMEOUT "" 1s
 
 	if ! [ -d $HOME/.dominic-nvim ];then
-		git clone $DOTFILE_REMOTE $HOME/.dominic-nvim --depth 1
+		git clone $NEOVIM_REMOTE $HOME/.dominic-nvim --depth 1
 
 		if [ -d $HOME/.dominic-nvim ];then
 			SETTIMEOUT "" 1s

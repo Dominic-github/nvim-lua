@@ -308,6 +308,8 @@ function install(){
 	git clone https://github.com/NvChad/NvChad $HOME/.config/nvim --depth 1 
 	echo -e ${BGreen}"[*] Nvchad is successfully.\n" ${Color_Off}
 
+  # Move Custom config
+	moveConfig
 }
 
 

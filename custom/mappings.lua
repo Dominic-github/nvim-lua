@@ -6,7 +6,7 @@ M.general = {
     ["<S-H>"] = { "<ESC>^", "beginning of line" },
     ["<S-L>"] = { "<End>", "end of line" },
     ["<S-J>"] = { "5j", "move down 5 live" },
-    ["<S-K>"] = { "5k", "move down 5 live" },
+    ["K"] = { "5k", "move down 5 live" },
 
     ["<C-s>"] = {
       function()
